@@ -32,10 +32,18 @@ export const getSpecificGif = async (id) => {
     }
   };
 
-
-  export const getRandomGif = async (limit = 10 ) => {
+  export const getRandomGif = async (limit = 10) => {
     try {
       const apiResponse = await axios.get(
-      )
+        `${API_URL}/random?api_key=${
+          import.meta.env.VITE_API_KEY
+        }&limit=${limit}`
+      );
+  
+      const data = apiResponse.data;
+  
+      return data;
+    } catch (e) {
+      return "Failed to get random gif";
     }
-  }
+  };

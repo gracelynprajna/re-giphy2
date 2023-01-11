@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { getSpecificGif, getTrending } from './api';
+import { getRandomGif, getSpecificGif, getTrending } from './api';
 import GifDetail from './Pages/gif-detail';
 import Layout from './Pages/Layout'
 import Random from './Pages/Random';
@@ -16,10 +16,16 @@ const router = createBrowserRouter([
       {
         path: "random",
         element: <Random/>,
+        loader: () => {
+          return getRandomGif();
+        }
       },
       {
         path: "search",
         element: <Search/>,
+        loader: () => {
+          return getSpecificGif();
+        }
       },
       {
         path: "trending",
